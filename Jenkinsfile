@@ -97,20 +97,20 @@ podTemplate(label: label, containers: [
           success(SLACK_TOKEN, "Deploy DEV", IMAGE_NAME, VERSION, "dev", BASE_DOMAIN)
         }
       }
-//      stage("Proceed STAGE") {
+      stage("Proceed STAGE") {
 //        container("builder") {
 //          proceed(SLACK_TOKEN, "Deploy STAGE", IMAGE_NAME, VERSION, "stage")
 //          timeout(time: 60, unit: "MINUTES") {
 //            input(message: "$IMAGE_NAME $VERSION to stage")
 //          }
 //        }
-//      }
-//      stage("Deploy STAGE") {
+      }
+      stage("Deploy STAGE") {
 //        container("builder") {
 //          butler.helm_install(IMAGE_NAME, VERSION, "stage", BASE_DOMAIN, CLUSTER)
 //          success(SLACK_TOKEN, "Deploy STAGE", IMAGE_NAME, VERSION, "stage", BASE_DOMAIN)
 //        }
-//      }
+      }
     }
   }
 }
