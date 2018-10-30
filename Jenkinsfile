@@ -58,7 +58,7 @@ podTemplate(label: label, containers: [
     stage("Build") {
       container("node") {
         try {
-          butler.npm_build()
+//          butler.npm_build()
           success(SLACK_TOKEN, "Build", IMAGE_NAME, VERSION)
         } catch (e) {
           failure(SLACK_TOKEN, "Build", IMAGE_NAME)
@@ -66,21 +66,13 @@ podTemplate(label: label, containers: [
         }
       }
     }
-    // if (BRANCH_NAME != "master") {
-    //   stage("Deploy PRE") {
-    //     container("builder") {
-    //       butler.draft_up(IMAGE_NAME, "pre", CLUSTER, BASE_DOMAIN)
-    //       success(SLACK_TOKEN, "Deploy PRE", IMAGE_NAME, VERSION, "pre", BASE_DOMAIN)
-    //     }
-    //   }
-    // }
     if (BRANCH_NAME == "master") {
       stage("Build Image") {
         parallel(
           "Build Docker": {
             container("builder") {
               try {
-                butler.build_image(IMAGE_NAME, VERSION)
+//                butler.build_image(IMAGE_NAME, VERSION)
               } catch (e) {
                 failure(SLACK_TOKEN, "Build Docker", IMAGE_NAME)
                 throw e
@@ -90,7 +82,7 @@ podTemplate(label: label, containers: [
           "Build Charts": {
             container("builder") {
               try {
-                butler.build_chart(IMAGE_NAME, VERSION)
+//                butler.build_chart(IMAGE_NAME, VERSION)
               } catch (e) {
                 failure(SLACK_TOKEN, "Build Charts", IMAGE_NAME)
                 throw e
@@ -101,24 +93,24 @@ podTemplate(label: label, containers: [
       }
       stage("Deploy DEV") {
         container("builder") {
-          butler.helm_install(IMAGE_NAME, VERSION, "dev", BASE_DOMAIN, CLUSTER)
+//          butler.helm_install(IMAGE_NAME, VERSION, "dev", BASE_DOMAIN, CLUSTER)
           success(SLACK_TOKEN, "Deploy DEV", IMAGE_NAME, VERSION, "dev", BASE_DOMAIN)
         }
       }
-      stage("Proceed STAGE") {
-        container("builder") {
-          proceed(SLACK_TOKEN, "Deploy STAGE", IMAGE_NAME, VERSION, "stage")
-          timeout(time: 60, unit: "MINUTES") {
-            input(message: "$IMAGE_NAME $VERSION to stage")
-          }
-        }
-      }
-      stage("Deploy STAGE") {
-        container("builder") {
-          butler.helm_install(IMAGE_NAME, VERSION, "stage", BASE_DOMAIN, CLUSTER)
-          success(SLACK_TOKEN, "Deploy STAGE", IMAGE_NAME, VERSION, "stage", BASE_DOMAIN)
-        }
-      }
+//      stage("Proceed STAGE") {
+//        container("builder") {
+//          proceed(SLACK_TOKEN, "Deploy STAGE", IMAGE_NAME, VERSION, "stage")
+//          timeout(time: 60, unit: "MINUTES") {
+//            input(message: "$IMAGE_NAME $VERSION to stage")
+//          }
+//        }
+//      }
+//      stage("Deploy STAGE") {
+//        container("builder") {
+//          butler.helm_install(IMAGE_NAME, VERSION, "stage", BASE_DOMAIN, CLUSTER)
+//          success(SLACK_TOKEN, "Deploy STAGE", IMAGE_NAME, VERSION, "stage", BASE_DOMAIN)
+//        }
+//      }
     }
   }
 }
