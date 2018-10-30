@@ -1,4 +1,5 @@
 // version 0.0.1
+// version 0.0.2
 
 def IMAGE_NAME = "test-nodejs"
 def REPOSITORY_URL = "https://github.com/opsnow-tools/test-nodejs.git"
