@@ -144,11 +144,11 @@ def proceed(token = "", type = "", name = "", version = "", namespace = "") {
 def slack(token = "", color = "", title = "", message = "", footer = "") {
   try {
     // butler.slack("$token", "$color", "$title", "$message", "$footer")
-    sh """
-      curl -sL repo.opsnow.io/valve-ctl/slack | bash -s -- --token='$token' \
-        --footer='$footer' --footer_icon='https://jenkins.io/sites/default/files/jenkins_favicon.ico' \
-        --color='$color' --title='$title' '$message'
-    """
+//    sh """
+//      curl -sL repo.opsnow.io/valve-ctl/slack | bash -s -- --token='$token' \
+//        --footer='$footer' --footer_icon='https://jenkins.io/sites/default/files/jenkins_favicon.ico' \
+//        --color='$color' --title='$title' '$message'
+//    """
   } catch (ignored) {
   }
 }
