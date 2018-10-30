@@ -1,5 +1,6 @@
 // version 0.0.1
 // version 0.0.1-1
+// version 0.0.1-2
 
 
 def IMAGE_NAME = "test-nodejs"
