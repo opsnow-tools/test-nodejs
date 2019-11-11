@@ -16,11 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/nalbam/sample-node.git"
+    "url": "https://github.com/opsnow-tools/test-nodejs.git"
   },
-  "author": "Jungyoul Yu <me@nalbam.com>",
-  "homepage": "http://github.com/nalbam/sample-node",
+  "author": "muyoul lee <lemy0715@gmail.com>",
   "bugs": {
-    "url": "http://github.com/nalbam/sample-node/issues"
+    "url": "https://github.com/opsnow-tools/test-nodejs/issues"
   }
 }
