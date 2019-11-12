@@ -1,4 +1,3 @@
 node_modules/*
-charts/*
-.valvesecret
 package-lock.json
+draft.toml
